@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/include/template.xhtml">
+
+	<ui:define name="conteudo">
+
+		 <p:growl id="growl" showDetail="true" sticky="false" />
+        <div id="loader" class="load-bar" style="display: none">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
+        <p:dialog id="adminStatusDialog" modal="true" widgetVar="statusDialog" draggable="false" closable="false"
+                  resizable="false" responsive="true" showHeader="false" appendTo="@(body)">
+        </p:dialog>
+<h6 style="margin: 20px 0px 0px 10px"><a href="../index.jsf?faces-redirect=true" style="color: blue !important">Inicio</a> / Cadastro de Novo Funcionário</h6>
+        <div class="login-box">
+            <div class="box login-box-body">
+                <h:form>
+                    <p:messages closable="true"/>
+					<p>CPF</p>
+                    <div class="form-group has-feedback">
+                        <p:inputMask type="text" styleClass="form-control" placeholder="CPF" value="#{funcionarioMBean.funcionario.cpf}"
+                                     required="true" id="cpf" mask="999.999.999-99"
+                                     requiredMessage="CPF é obrigatorio."/>
+                        <i class="fa fa-user form-control-feedback" ></i>
+                    </div>
+                    <p>Nome</p>
+                     <div class="form-group has-feedback">
+                        <p:inputText  type="text" styleClass="form-control" placeholder="Nome completo" value="#{funcionarioMBean.funcionario.nome}"
+                                     required="true" id="nome"
+                                     requiredMessage="Nome é obrigatorio."/>
+                        <i class="fa fa-user form-control-feedback" ></i>
+                    </div>
+                    <p>Email</p>
+                     <div class="form-group has-feedback">
+                        <p:inputText  type="email" styleClass="form-control" placeholder="Email" value="#{funcionarioMBean.funcionario.email}"
+                                     required="true" id="email"
+                                     requiredMessage="Email é obrigatorio."/>
+                        <i class="fa fa-envelope form-control-feedback" ></i>
+                    </div>
+                    <p>Telefone</p>
+                     <div class="form-group has-feedback">
+                        <p:inputMask  type="text" styleClass="form-control" placeholder="Telefone" value="#{funcionarioMBean.funcionario.telefone}"
+                                     required="true"  mask="(99)99999-9999"
+                                     requiredMessage="Telefone é obrigatorio."/>
+                        <i class="fa fa-phone form-control-feedback" ></i>
+                    </div>
+                    <p>Senha</p>
+                    <div class="form-group has-feedback">
+                        <p:inputText  type="password" styleClass="form-control" value="#{funcionarioMBean.funcionario.senha}"
+                                     placeholder="Senha" required="true" id="senha"
+                                     requiredMessage="Senha é obrigatoria."/>
+                        <i class="fa fa-lock form-control-feedback" style="font-size: 18px"></i>
+                    </div>
+                    <p>Data de admissão</p>
+                     <div class="form-group has-feedback">
+                        <p:inputText  type="date" styleClass="form-control" value="#{funcionarioMBean.funcionario.dataAdmissao}"
+                                     placeholder="Data de admissao" required="true" id="dataAdmissao"
+                                     requiredMessage="Data de Admissao é obrigatoria.">  <f:convertDateTime pattern="yyyy-MM-dd" /></p:inputText>
+                        <i class="fa fa-lock form-control-feedback" style="font-size: 18px"></i>
+                    </div>
+                    <p>Função exercida</p>
+                    <div class="form-group has-feedback">
+                        <p:inputText  type="text" styleClass="form-control" value="#{funcionarioMBean.funcionario.funcao}"
+                                     placeholder="Funcao" required="true" id="funcao"
+                                     requiredMessage="Funcao é obrigatoria."/>
+                        <i class="fa fa-lock form-control-feedback" style="font-size: 18px"></i>
+                    </div>
+                    
+                    <div class="row">
+                        <p:spacer height="10"/>
+                        <div class="col-xs-12">
+                        <p:commandButton styleClass="btn btn-success btn-block" action="#{funcionarioMBean.cadastrar}" onclick="showBar()" oncomplete="if(args.validationFailed){hideBar()}"
+                                             value="Cadastrar"/>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+        <h:outputScript library="js" name="admintemplate.js" target="head"/>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	template="/include/template.xhtml">
+
+	<ui:define name="conteudo">
+
+		<h:messages />
+		<h6 style="margin: 20px 0px 15px 10px">
+			<a href="../index.jsf?faces-redirect=true"
+				style="color: blue !important">Inicio</a> / Listagem de usuários
+			existentes
+		</h6>
+		<h:form>
+			<b:dataTable value="#{usuarioMBean.usuariosModel}" var="usuario">
+				<b:dataTableColumn value="#{usuario.cpf}" label="CPF" />
+				<b:dataTableColumn value="#{usuario.nome}" label="Nome" />
+				<b:dataTableColumn value="#{usuario.senha}" label="Senha" />
+				<b:dataTableColumn label="">
+					<b:commandButton value="Visualizar" look="primary"
+						style="margin-right:10px;" />
+					<b:commandButton action="#{usuarioMBean.removerUsuario}"
+						value="Remover" look="danger" />
+				</b:dataTableColumn>
+			</b:dataTable>
+			<!-- 			<b:commandButton action="#{materialMBean.novoMaterial}" -->
+			<!-- 						value="Novo Cadastro" look="primary" /> -->
+			<!-- 			<b:commandButton action="/pages/index.jsf" -->
+			<!-- 						value="Voltar" look="primary" /> -->
+		</h:form>
+	</ui:define>
+</ui:composition>

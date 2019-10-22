@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cadastrar</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+        <meta name="theme-color" content="#444"/>
+        <meta name="mobile-web-app-capable" content="yes"/>
+ 
+        <style type="text/css">
+            body .load-bar {
+               margin-top: -20px;
+            }   
+            /* below css hides growls in small screens and makes messages visible */
+            @media (max-width: 768px) {
+                body div.ui-growl {
+                    display: none;
+                }
+                body div.ui-messages {
+                    display: block;
+                }
+            }
+            
+           /* below css hides messages in medium/big devices and makes growl visible in such devices */
+            @media (min-width: 769px) {
+                body div.ui-growl {
+                    display: block;
+                }
+                body div.ui-messages {
+                    display: none;
+                }
+            }
+            body.login-page {
+                background-color: transparent;
+            }
+        </style>
+    </h:head>
+    <h:body styleClass="hold-transition fixed sidebar-mini sidebar-collapse">
+    
+       <p:growl id="growl" showDetail="true" sticky="false" />
+        <div id="loader" class="load-bar" style="display: none">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
+        <p:dialog id="adminStatusDialog" modal="true" widgetVar="statusDialog" draggable="false" closable="false"
+                  resizable="false" responsive="true" showHeader="false" appendTo="@(body)">
+        </p:dialog>
+
+        <div class="login-box">
+           <div class="login-logo" style=" margin: 0 -50px; font-size: 60px;">
+              <b>SIGCAR</b>Cadastrar
+            </div>
+            <div class="box login-box-body">
+                <h:form>
+                    <p class="login-box-msg">Entre para usar o sistema!</p>
+                    <p:messages closable="true"/>
+
+                    <div class="form-group has-feedback">
+                        <p:inputMask type="text" styleClass="form-control" placeholder="CPF" value="#{usuarioMBean.usuario.cpf}"
+                                     required="true" id="cpf" mask="999.999.999-99"
+                                     requiredMessage="CPF é obrigatorio."/>
+                        <i class="fa fa-user form-control-feedback" ></i>
+                    </div>
+                     <div class="form-group has-feedback">
+                        <p:inputText  type="text" styleClass="form-control" placeholder="Nome completo" value="#{usuarioMBean.usuario.nome}"
+                                     required="true" id="nome"
+                                     requiredMessage="Nome é obrigatorio."/>
+                        <i class="fa fa-user form-control-feedback" ></i>
+                    </div>
+                     <div class="form-group has-feedback">
+                        <p:inputText  type="email" styleClass="form-control" placeholder="Email" value="#{usuarioMBean.usuario.email}"
+                                     required="true" id="email"
+                                     requiredMessage="Email é obrigatorio."/>
+                        <i class="fa fa-envelope form-control-feedback" ></i>
+                    </div>
+                     <div class="form-group has-feedback">
+                        <p:inputMask  type="text" styleClass="form-control" placeholder="Telefone" value="#{usuarioMBean.usuario.telefone}"
+                                     required="true"  mask="(99)99999-9999"
+                                     requiredMessage="Telefone é obrigatorio."/>
+                        <i class="fa fa-phone form-control-feedback" ></i>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <p:inputText  type="password" styleClass="form-control" value="#{usuarioMBean.usuario.senha}"
+                                     placeholder="Senha" required="true" id="senha"
+                                     requiredMessage="Senha é obrigatoria."/>
+                        <i class="fa fa-lock form-control-feedback" style="font-size: 18px"></i>
+                    </div>
+                    
+                    <div class="row">
+                        <p:spacer height="10"/>
+                        <div class="col-xs-12">
+                        <p:commandButton styleClass="btn btn-success btn-block" action="#{usuarioMBean.cadastrar}" onclick="showBar()" oncomplete="if(args.validationFailed){hideBar()}"
+                                             value="Cadastrar"/>
+                                             
+                        <a class="btn btn-primary btn-block" style="margin-top: 10px;" href="/sistemacartorial/login/login.jsf">Voltar</a>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+        <h:outputScript library="js" name="admintemplate.js" target="head"/>
+    </h:body>
+</html>

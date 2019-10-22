@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Raleway" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<style>
+.dropbtn {
+  background-color: white;
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.consultarLink{
+background-color: white;
+  color: black;
+  padding: 18px;
+  font-size: 16px;
+  border: none;
+}
+ a{
+ text-decoration: none !important; color: black !important; 
+ }
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 15px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .consultarLink {background-color: gray;}
+.dropdown:hover .dropbtn {background-color: gray;}
+</style>
+<h:head>
+</h:head>
+<h:body>
+	<h1>SIGCAR</h1>
+		<div class="w3-white w3-card" id="myNavbar" style="max-height: 60px;">
+			<!-- 				<a href="#home" class="w3-bar-item w3-button w3-wide"><span -->
+			<!-- 					style="font-size: 22px;">SIGCAR</span></a> -->
+			<!-- Right-sided navbar links -->
+			<h:form>
+			<div class="dropdown">
+					<a href="../index.jsf?faces-redirect=true" class="consultarLink">Início
+					 </a>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn">Usuário</button>
+					<div class="dropdown-content">
+						<a href="/sistemacartorial/pages/usuarios/novo.jsf"> Novo</a>
+						<h:commandLink ajax="false"
+							action="#{usuarioMBean.listarUsuarios}">
+							<h:outputText value="Listar" />
+						</h:commandLink>
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn">Funcionário</button>
+					<div class="dropdown-content">
+					<a href="/sistemacartorial/pages/funcionarios/novo.jsf"> Novo</a>
+					<h:commandLink ajax="false"
+							action="#{funcionarioMBean.listarFuncionarios}">
+							<h:outputText value="Listar" />
+						</h:commandLink>
+					</div>
+				</div>
+				<div class="dropdown">
+					<a href="/sistemacartorial/pages/zona/zona.jsf" class="consultarLink">Consultar Zona Imovel
+					 </a>
+				</div>
+			</h:form>
+		</div>
+		<b:commandLink style="display:none"></b:commandLink>
+	<div id="content" class="">
+		<ui:insert name="conteudo">Conteúdo</ui:insert>
+	</div>
+</h:body>
+
+</html>

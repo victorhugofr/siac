@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<div style="background-color:#708090;" >
+<h1 >SIGCAR</h1></div>
+</h:head>
+
+<h:body>
+	<h:form>
+
+<!-- 		<p:growl id="messages" /> -->
+		<p:menubar style="background-color:#4682B4;">
+			<p:submenu label="Usuario">
+				<p:menuitem value="Novo" />
+				<p:menuitem value="Listar" action="#{usuarioMBean.listarUsuarios}"  ajax="false"/>
+				<p:separator />
+				<p:menuitem value="Quit" url="#" />
+			</p:submenu>
+
+			<p:submenu label="Funcionários">
+				<p:menuitem value="Novo" url="#" />
+				<p:menuitem value="Listar" url="#" />
+			</p:submenu>
+
+
+			<f:facet name="options">
+				<p:commandButton value="Login" type="button"
+					onclick="PF('dlg2').show();" />
+			</f:facet>
+		</p:menubar>
+	</h:form>
+	<h:form>
+		<p:dialog header="Login" widgetVar="dlg2" modal="true"
+			height="200">
+				<p:growl id="growl" showDetail="true" sticky="false" />
+				<fieldset>
+					<p>Usuario:</p>
+					<p>
+						<p:inputText value="#{usuarioMBean.usuario.login}"
+							placeholder="Insira seu login" ajax="false"/>
+					</p>
+					<p>Senha:</p>
+					<p>
+						<p:inputText value="#{usuarioMBean.usuario.senha}"
+							placeholder="Insira sua senha" ajax="false"/>
+					</p>
+					<p:commandButton action="#{usuarioMBean.logar}" value="Logar"
+						styleClass="btn-primary"  ajax="false" />
+					<p:commandButton action="#{usuarioMBean.cadastrar}"
+						value="Cadastrar" styleClass="btn-primary"  ajax="false"/>
+				</fieldset>
+				
+		</p:dialog>
+		</h:form>
+
+</h:body>
+</html>

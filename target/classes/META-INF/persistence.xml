@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="sigcar">
+<!-- 	<provider>org.hibernate.ejb.HibernatePersistence</provider> -->
+	<class>br.com.sigcar.dominio.Usuario</class>
+	<class>br.com.sigcar.dominio.Funcionario</class>
+	<class>br.com.sigcar.dominio.Cliente</class>
+	<class>br.com.sigcar.dominio.Endereco</class>
+		<properties>
+			<property name="hibernate.connection.driver_class"
+				value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url"
+				value="jdbc:postgresql://localhost:5432/sigcar" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.connection.username"
+				value="postgres" />
+			<property name="hibernate.connection.password" value="postgres" />
+<!-- 			<property name="connection.pool_size" value="1"/> -->
+			<property name="hibernate.format_sql" value="false"/>
+			
+		<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="create" /> -->
+		</properties>
+	</persistence-unit>
+
+</persistence>
